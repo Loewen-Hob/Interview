@@ -1,0 +1,259 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.6.0">
+  <diagram name="第 1 页" id="xcY1EmltB7IvpoODOSfG">
+    <mxGraphModel dx="1434" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageEnabled="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <!-- Input Side -->
+        <mxCell id="input_data" value="输入" style="shape=cube;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="200" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="input_embedding" value="输入嵌入" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="210" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="positional_encoding_input" value="位置编码" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="180" y="290" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="conn_input_embedding" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="input_data" target="input_embedding">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="130" y="240" as="sourcePoint" />
+            <mxPoint x="180" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_embedding_pos_enc" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="input_embedding" target="positional_encoding_input">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="230" y="270" as="sourcePoint" />
+            <mxPoint x="230" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Encoder Stack -->
+        <mxCell id="encoder_group" value="编码器" style="group;" vertex="1" parent="1">
+          <mxGeometry x="350" y="100" width="200" height="480" as="geometry" />
+        </mxCell>
+        <!-- Encoder Block 1 -->
+        <mxCell id="encoder_block_1" value="编码器块 N" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="encoder_group">
+          <mxGeometry x="0" y="0" width="200" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="mha_enc1" value="多头自注意力" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="encoder_block_1">
+          <mxGeometry x="25" y="20" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="add_norm_enc1_1" value="残差连接 &amp; 归一化" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="encoder_block_1">
+          <mxGeometry x="25" y="70" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ffn_enc1" value="前馈网络" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="encoder_block_1">
+          <mxGeometry x="25" y="110" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="add_norm_enc1_2" value="残差连接 &amp; 归一化" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="encoder_block_1">
+          <mxGeometry x="25" y="160" width="150" height="30" as="geometry" />
+        </mxCell>
+        <!-- Connections within Encoder Block 1 -->
+        <mxCell id="conn_enc1_in_mha" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=0;entryX=0.5;entryY=0;" edge="1" parent="encoder_block_1" source="mha_enc1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="0" as="sourcePoint" />
+            <mxPoint x="100" y="20" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="100" y="0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_mha_addnorm1" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="encoder_block_1" source="mha_enc1" target="add_norm_enc1_1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="60" as="sourcePoint" />
+            <mxPoint x="100" y="70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_addnorm1_ffn" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="encoder_block_1" source="add_norm_enc1_1" target="ffn_enc1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="100" as="sourcePoint" />
+            <mxPoint x="100" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_ffn_addnorm2" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="encoder_block_1" source="ffn_enc1" target="add_norm_enc1_2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="150" as="sourcePoint" />
+            <mxPoint x="100" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Residual connection 1 -->
+        <mxCell id="res_enc1_1" value="" style="endArrow=none;html=1;exitX=0;exitY=0.5;entryX=0;entryY=0.5;dashed=1;" edge="1" parent="encoder_block_1" source="mha_enc1" target="add_norm_enc1_1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="25" y="40" as="sourcePoint" />
+            <mxPoint x="25" y="85" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="15" y="40" />
+              <mxPoint x="15" y="85" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- Residual connection 2 -->
+        <mxCell id="res_enc1_2" value="" style="endArrow=none;html=1;exitX=0;exitY=0.5;entryX=0;entryY=0.5;dashed=1;" edge="1" parent="encoder_block_1" source="ffn_enc1" target="add_norm_enc1_2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="25" y="130" as="sourcePoint" />
+            <mxPoint x="25" y="175" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="15" y="130" />
+              <mxPoint x="15" y="175" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ellipsis_enc" value="..." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="encoder_group">
+          <mxGeometry x="85" y="200" width="30" height="20" as="geometry" />
+        </mxCell>
+        <!-- Encoder Block N+1 (simplified) -->
+        <mxCell id="encoder_block_N" value="编码器块 N+1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="encoder_group">
+          <mxGeometry x="0" y="240" width="200" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="mha_encN" value="多头自注意力" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="encoder_block_N">
+          <mxGeometry x="25" y="20" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="add_norm_encN_1" value="残差连接 &amp; 归一化" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="encoder_block_N">
+          <mxGeometry x="25" y="70" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ffn_encN" value="前馈网络" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="encoder_block_N">
+          <mxGeometry x="25" y="110" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="add_norm_encN_2" value="残差连接 &amp; 归一化" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="encoder_block_N">
+          <mxGeometry x="25" y="160" width="150" height="30" as="geometry" />
+        </mxCell>
+        <!-- Connections within Encoder Block N -->
+        <mxCell id="conn_encN_in_mha" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=0;entryX=0.5;entryY=0;" edge="1" parent="encoder_block_N" source="mha_encN">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="0" as="sourcePoint" />
+            <mxPoint x="100" y="20" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="100" y="0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_mha_addnormN1" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="encoder_block_N" source="mha_encN" target="add_norm_encN_1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="60" as="sourcePoint" />
+            <mxPoint x="100" y="70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_addnormN1_ffn" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="encoder_block_N" source="add_norm_encN_1" target="ffn_encN">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="100" as="sourcePoint" />
+            <mxPoint x="100" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_ffn_addnormN2" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="encoder_block_N" source="ffn_encN" target="add_norm_encN_2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="150" as="sourcePoint" />
+            <mxPoint x="100" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Residual connection N1 -->
+        <mxCell id="res_encN_1" value="" style="endArrow=none;html=1;exitX=0;exitY=0.5;entryX=0;entryY=0.5;dashed=1;" edge="1" parent="encoder_block_N" source="mha_encN" target="add_norm_encN_1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="25" y="40" as="sourcePoint" />
+            <mxPoint x="25" y="85" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="15" y="40" />
+              <mxPoint x="15" y="85" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <!-- Residual connection N2 -->
+        <mxCell id="res_encN_2" value="" style="endArrow=none;html=1;exitX=0;exitY=0.5;entryX=0;entryY=0.5;dashed=1;" edge="1" parent="encoder_block_N" source="ffn_encN" target="add_norm_encN_2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="25" y="130" as="sourcePoint" />
+            <mxPoint x="25" y="175" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="15" y="130" />
+              <mxPoint x="15" y="175" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="encoder_output" value="编码器输出" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="encoder_group">
+          <mxGeometry x="50" y="440" width="100" height="40" as="geometry" />
+        </mxCell>
+        <!-- Connections for Encoder Stack -->
+        <mxCell id="conn_pos_enc_enc1" value="" style="endArrow=classic;html=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="positional_encoding_input" target="encoder_block_1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="280" y="320" as="sourcePoint" />
+            <mxPoint x="350" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_enc1_encN" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="encoder_group" source="encoder_block_1" target="encoder_block_N">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="180" as="sourcePoint" />
+            <mxPoint x="100" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_encN_output" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="encoder_group" source="encoder_block_N" target="encoder_output">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="420" as="sourcePoint" />
+            <mxPoint x="100" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <!-- Decoder Stack -->
+        <mxCell id="decoder_group" value="解码器" style="group;" vertex="1" parent="1">
+          <mxGeometry x="650" y="100" width="200" height="480" as="geometry" />
+        </mxCell>
+        <!-- Decoder Block 1 -->
+        <mxCell id="decoder_block_1" value="解码器块 N" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="decoder_group">
+          <mxGeometry x="0" y="0" width="200" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="masked_mha_dec1" value="掩码多头自注意力" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="decoder_block_1">
+          <mxGeometry x="25" y="20" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="add_norm_dec1_1" value="残差连接 &amp; 归一化" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="decoder_block_1">
+          <mxGeometry x="25" y="70" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="mha_enc_dec1" value="多头注意力 (编码器-解码器)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="decoder_block_1">
+          <mxGeometry x="25" y="110" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="add_norm_dec1_2" value="残差连接 &amp; 归一化" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="decoder_block_1">
+          <mxGeometry x="25" y="160" width="150" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ffn_dec1" value="前馈网络" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="decoder_block_1">
+          <mxGeometry x="25" y="190" width="150" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="add_norm_dec1_3" value="残差连接 &amp; 归一化" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="decoder_block_1">
+          <mxGeometry x="25" y="240" width="150" height="30" as="geometry" />
+        </mxCell>
+        <!-- Connections within Decoder Block 1 -->
+        <mxCell id="conn_dec1_in_masked_mha" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=0;entryX=0.5;entryY=0;" edge="1" parent="decoder_block_1" source="masked_mha_dec1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="0" as="sourcePoint" />
+            <mxPoint x="100" y="20" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="100" y="0" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_masked_mha_addnorm1_dec" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="decoder_block_1" source="masked_mha_dec1" target="add_norm_dec1_1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="60" as="sourcePoint" />
+            <mxPoint x="100" y="70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_addnorm1_mha_enc_dec" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="decoder_block_1" source="add_norm_dec1_1" target="mha_enc_dec1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="100" as="sourcePoint" />
+            <mxPoint x="100" y="110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_mha_enc_dec_addnorm2" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="decoder_block_1" source="mha_enc_dec1" target="add_norm_dec1_2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="150" as="sourcePoint" />
+            <mxPoint x="100" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_addnorm2_ffn_dec" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="decoder_block_1" source="add_norm_dec1_2" target="ffn_dec1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="190" as="sourcePoint" />
+            <mxPoint x="100" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="conn_ffn_addnorm3_dec" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="decoder_block_1" source="ffn_dec1" target="add_norm_dec1_3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="100" y="230" as="sourcePoint" />
+            <mxPoint x="100" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
