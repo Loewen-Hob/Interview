@@ -1,9 +1,27 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 Safari/537.36" version="29.6.6">
   <diagram name="第 1 页" id="OtOaSgKH8m1q2X6KPHBO">
-    <mxGraphModel>
+    <mxGraphModel dx="946" dy="514" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="nhx_mLQ3pDWPfuODlAT_-5" edge="1" parent="1" source="nhx_mLQ3pDWPfuODlAT_-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.59;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="nhx_mLQ3pDWPfuODlAT_-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="nhx_mLQ3pDWPfuODlAT_-1" parent="1" style="shape=mxgraph.signs.healthcare.brain;html=1;pointerEvents=1;fillColor=#dae8fc;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;" value="" vertex="1">
+          <mxGeometry height="85" width="98" x="191" y="20" as="geometry" />
+        </mxCell>
+        <mxCell id="nhx_mLQ3pDWPfuODlAT_-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" value="空间坐标" vertex="1">
+          <mxGeometry height="50" width="80" x="100" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="nhx_mLQ3pDWPfuODlAT_-3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" value="功能脑区标签" vertex="1">
+          <mxGeometry height="50" width="80" x="320" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="nhx_mLQ3pDWPfuODlAT_-4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;fontColor=#333333;" value="微结构特征" vertex="1">
+          <mxGeometry height="50" width="80" x="209" y="140" as="geometry" />
+        </mxCell>
+        <mxCell id="nhx_mLQ3pDWPfuODlAT_-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="FA, MD, T1" vertex="1">
+          <mxGeometry height="30" width="101" x="198.5" y="190" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
